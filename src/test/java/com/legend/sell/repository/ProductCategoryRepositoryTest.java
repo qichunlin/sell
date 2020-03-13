@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -19,6 +21,19 @@ public class ProductCategoryRepositoryTest {
 
     @Autowired
     private ProductCategoryRepository repository;
+
+
+    @Test
+    @Transactional
+    public void queryByCategoryTypeInTest(){
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(11);
+        List<ProductCategory> productCategories = repository.queryByCategoryTypeIn(list);
+        Assert.assertNotNull(productCategories);
+        Assert.assertNotEquals(0,productCategories.size());
+    }
 
     @Test
     @Transactional
