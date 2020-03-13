@@ -3,6 +3,9 @@ package com.legend.sell;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * @author legend
+ */
 @SpringBootApplication
 public class SellApplication {
 
