@@ -24,9 +24,10 @@ public class OrderMaster {
 
     /**
      * 订单id
+     *
+     * @GeneratedValue(strategy = GenerationType.IDENTITY)  //不适合字符串的id
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String orderId;
 
     /**
