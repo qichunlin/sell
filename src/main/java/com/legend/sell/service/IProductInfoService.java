@@ -1,5 +1,6 @@
 package com.legend.sell.service;
 
+import com.legend.sell.dto.CartDTO;
 import com.legend.sell.entity.ProductInfo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -45,17 +46,21 @@ public interface IProductInfoService {
     ProductInfo save(ProductInfo productInfo);
 
     /**
-     * 减少库存.
+     * 减少库存(传入一个购物车对象)
+     *
+     * @param cartDTOList
      */
-    void decreaseStock(List<?> cartDTOList);
+    void decreaseStock(List<CartDTO> cartDTOList);
 
     /**
-     * 增加库存.
+     * 增加库存
+     *
+     * @param cartDTOList
      */
-    void increaseStock(List<?> cartDTOList);
+    void increaseStock(List<CartDTO> cartDTOList);
 
     /**
-     * 商品下架.
+     * 商品下架
      *
      * @param productInfo
      * @return ProductInfo
@@ -63,7 +68,7 @@ public interface IProductInfoService {
     ProductInfo offSafe(ProductInfo productInfo);
 
     /**
-     * 商品上架.
+     * 商品上架
      *
      * @param productInfo
      * @return ProductInfo
