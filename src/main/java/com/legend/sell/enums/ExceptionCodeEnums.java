@@ -18,6 +18,16 @@ public enum ExceptionCodeEnums {
     ORDER_STATUS_ERROR(14 , "订单状态不正确"),
 
     ORDER_STATUS_UPDATE_FAIL(15 , "订单状态更新失败"),
+    ORDER_PAY_NOT_FOUND(16 , "支付状态不正确"),
+    ORDER_PAY_STATUS_ERROR(17, "订单支付状态不正确"),
+    ORDER_PAY_STATUS_UPDATE_FAIL(18, "订单支付状态更新失败"),
+
+    Order_CART_EMPTY(19 , "购物车为空"),
+
+    NOT_CURRENT_USER(20 , "不是当前用户"),
+
+    WECHAT_MP_ERROR(21 , "微信网页授权失败"),
+
     ;
 
     private Integer code;

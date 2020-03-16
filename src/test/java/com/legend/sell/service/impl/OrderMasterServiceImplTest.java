@@ -3,6 +3,7 @@ package com.legend.sell.service.impl;
 import com.legend.sell.dto.OrderMasterDTO;
 import com.legend.sell.entity.OrderDetail;
 import com.legend.sell.enums.OrderStatusEnums;
+import com.legend.sell.enums.PayStatusEnums;
 import com.legend.sell.service.IOrderMasterService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
@@ -29,7 +30,8 @@ public class OrderMasterServiceImplTest {
 
     private static final String BUYER_OPENID = "abc123";
 
-    private static final String ORDER_ID = "1584266903383596286";
+//    private static final String ORDER_ID = "1584266903383596286";
+    private static final String ORDER_ID = "2";
 
     @Test
     public void create() {
@@ -76,10 +78,16 @@ public class OrderMasterServiceImplTest {
 
     @Test
     public void finish() {
+        OrderMasterDTO orderMasterDTO = orderMasterService.queryOne(ORDER_ID);
+        OrderMasterDTO result = orderMasterService.finish(orderMasterDTO);
+        Assert.assertEquals(OrderStatusEnums.FINISH.getCode(),result.getOrderStatus());
     }
 
     @Test
     public void pay() {
+        OrderMasterDTO orderMasterDTO = orderMasterService.queryOne(ORDER_ID);
+        OrderMasterDTO result = orderMasterService.pay(orderMasterDTO);
+        Assert.assertEquals(PayStatusEnums.FINISH.getCode(),result.getPayStatus());
     }
 
     @Test
