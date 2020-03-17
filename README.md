@@ -2,6 +2,12 @@
 使用springboot+vue构建的微信点餐系统
 
 
+## Swagger2接口文档地址
+```
+http://127.0.0.1:8080/sell/swagger-ui.html
+```
+
+
 ## 修改nginx的配置代理信息
 - 修改为电脑的IP地址
 ![](https://img2020.cnblogs.com/blog/1231979/202003/1231979-20200313220553288-208526422.png)
