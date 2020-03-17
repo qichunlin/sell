@@ -9,7 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * 时间序列化
+ * Date时间转换成Long类型的数据
+ * 2020-03-17--->1584452506
  *
  * @author legend
  */
