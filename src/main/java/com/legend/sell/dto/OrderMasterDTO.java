@@ -1,5 +1,6 @@
 package com.legend.sell.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -64,16 +65,24 @@ public class OrderMasterDTO {
 
     /**
      * 创建时间
+     * <p>
+     * 下面这个看可以将Date转化成Long类型的数据
+     * (@JsonSerialize(using = Date2LongSerializer.class))
      */
-    @JsonSerialize(using = Date2LongSerializer.class)
+    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
     private Date createTime;
 
     /**
      * 更新时间
+     * 下面这个看可以将Date转化成Long类型的数据
+     * (@JsonSerialize(using = Date2LongSerializer.class))
      */
-    @JsonSerialize(using = Date2LongSerializer.class)
+    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
     private Date updateTime;
 
+    /**
+     * 订单详情
+     */
     private List<OrderDetail> orderDetailList;
 
     @JsonIgnore
