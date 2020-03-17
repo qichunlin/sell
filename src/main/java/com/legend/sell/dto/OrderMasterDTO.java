@@ -12,6 +12,7 @@ import com.legend.sell.utils.serializer.Date2LongSerializer;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -82,8 +83,12 @@ public class OrderMasterDTO {
 
     /**
      * 订单详情
+     * (当项目中
+     *      集合的这个字段虽然为null 但是需要返回给前端一个[]--->new ArrayList<>()
+     *      字符串字段不能为null 而是返回给前端一个空字符串--->String ret = "";
+     *  )
      */
-    private List<OrderDetail> orderDetailList;
+    private List<OrderDetail> orderDetailList = new ArrayList<>();
 
     @JsonIgnore
     public OrderStatusEnums getOrderStatusEnum() {
