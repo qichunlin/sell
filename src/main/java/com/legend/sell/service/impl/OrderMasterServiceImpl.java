@@ -88,11 +88,10 @@ public class OrderMasterServiceImpl implements IOrderMasterService {
 
         //3.写入订单数据库(OrderMaster/OrderDetail)
         OrderMaster orderMaster = new OrderMaster();
-
+        orderMasterDTO.setOrderId(orderId);
         //这里需要注意顺序(属性值为null的也会被拷贝)
         //使用对象拷贝赋值相同属性值
         BeanUtils.copyProperties(orderMasterDTO, orderMaster);
-        orderMaster.setOrderId(orderId);
         orderMaster.setOrderAmount(orderAmount);
         //这里需要重新把 orderStatus和payStatus重新赋值
         orderMaster.setOrderStatus(OrderStatusEnums.NEW.getCode());
@@ -241,7 +240,11 @@ public class OrderMasterServiceImpl implements IOrderMasterService {
     }
 
     @Override
-    public Page<OrderMasterDTO> queryList(Pageable pageable) {
-        return null;
+    public Page<OrderMasterDTO> queryList(String buyerOpenid, Pageable pageable) {
+        //1.查找用户订单
+        Page<OrderMaster> orderMasterList = orderMasterRepository.queryByBuyerOpenid(buyerOpenid, pageable);
+        //转化成DTO
+        List<OrderMasterDTO> orderDtoList = ConvertOrderMaster2OrderMasterDTO.convert(orderMasterList.getContent());
+        return new PageImpl<>(orderDtoList, pageable, orderMasterList.getTotalElements());
     }
 }

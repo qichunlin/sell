@@ -61,8 +61,9 @@ public interface IOrderMasterService {
     /**
      * 查找订单.
      *
+     * @param buyerOpenid
      * @param pageable
      * @return
      */
-    Page<OrderMasterDTO> queryList(Pageable pageable);
+    Page<OrderMasterDTO> queryList(String buyerOpenid, Pageable pageable);
 }
