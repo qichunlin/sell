@@ -106,7 +106,7 @@ public class BuyerOrderController {
     @GetMapping("/detail")
     public ResultVO<OrderMasterDTO> detail(@RequestParam("openid") String openid,
                                            @RequestParam("orderId") String orderId) {
-        return ResultVOUtils.success(buyerOrderService.queryOne(openid, orderId));
+        return ResultVOUtils.success(buyerOrderService.queryOrderOne(openid, orderId));
     }
 
     /**

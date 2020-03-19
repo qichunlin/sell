@@ -14,7 +14,7 @@ public interface IBuyerOrderService {
      * @param orderId
      * @return
      */
-    OrderMasterDTO queryOne(String openid, String orderId);
+    OrderMasterDTO queryOrderOne(String openid, String orderId);
 
     /**
      * 取消订单

@@ -20,7 +20,7 @@ public class BuyerOrderServiceImpl implements IBuyerOrderService {
     private IOrderMasterService orderMasterService;
 
     @Override
-    public OrderMasterDTO queryOne(String openid, String orderId) {
+    public OrderMasterDTO queryOrderOne(String openid, String orderId) {
         return checkOwner(openid, orderId);
     }
 
