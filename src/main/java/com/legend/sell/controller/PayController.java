@@ -52,11 +52,12 @@ public class PayController {
 
     /**
      * 微信异步通知
+     *
      * @param notifyData
      */
     @PostMapping("/notify")
     public ModelAndView notify(@RequestBody String notifyData) {
-        //payService.notify(notifyData);
+        payService.notify(notifyData);
 
         //返回给微信处理结果
         return new ModelAndView("pay/success");

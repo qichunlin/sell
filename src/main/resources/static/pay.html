@@ -1,5 +1,7 @@
+<!--这个代码写在后端可以做到通用性-->
 <script>
     function onBridgeReady(){
+        /*在response内容里面会看到下面的对象*/
         WeixinJSBridge.invoke(
             'getBrandWCPayRequest', {
                 "appId":"wxd898fcb01713c658",     //公众号名称，由商户传入

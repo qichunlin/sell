@@ -27,6 +27,7 @@ public enum ExceptionCodeEnums {
     NOT_CURRENT_USER(20 , "不是当前用户"),
 
     WECHAT_MP_ERROR(21 , "微信网页授权失败"),
+    WXPAY_NOTIFY_MONEY_VERIFY_ERROR(22 , "微信支付异步通知金额校验不通过"),
 
     ;
 

@@ -15,4 +15,12 @@ public interface IPayService {
      * @return
      */
     PayResponse create(OrderMasterDTO orderMasterDTO);
+
+    /**
+     * 异步通知
+     *
+     * @param notifyData
+     * @return
+     */
+    PayResponse notify(String notifyData);
 }
