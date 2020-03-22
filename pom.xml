@@ -82,7 +82,7 @@
             <artifactId>best-pay-sdk</artifactId>
             <version>1.3.0</version>
         </dependency>
-
+        <!--页面模板-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-freemarker</artifactId>
