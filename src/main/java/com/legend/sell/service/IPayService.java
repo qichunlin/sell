@@ -2,6 +2,7 @@ package com.legend.sell.service;
 
 import com.legend.sell.dto.OrderMasterDTO;
 import com.lly835.bestpay.model.PayResponse;
+import com.lly835.bestpay.model.RefundResponse;
 
 /**
  * @author legend
@@ -23,4 +24,11 @@ public interface IPayService {
      * @return
      */
     PayResponse notify(String notifyData);
+
+    /**
+     * 退款
+     *
+     * @param orderMasterDTO
+     */
+    RefundResponse refund(OrderMasterDTO orderMasterDTO);
 }

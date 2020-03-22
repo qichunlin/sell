@@ -13,6 +13,7 @@ import com.legend.sell.exception.SellException;
 import com.legend.sell.repository.OrderDetailRepository;
 import com.legend.sell.repository.OrderMasterRepository;
 import com.legend.sell.service.IOrderMasterService;
+import com.legend.sell.service.IPayService;
 import com.legend.sell.service.IProductInfoService;
 import com.legend.sell.utils.KeyUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -46,6 +47,9 @@ public class OrderMasterServiceImpl implements IOrderMasterService {
     private OrderDetailRepository orderDetailRepository;
     @Autowired
     private OrderMasterRepository orderMasterRepository;
+
+    @Autowired
+    private IPayService payService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -188,7 +192,8 @@ public class OrderMasterServiceImpl implements IOrderMasterService {
 
         //如果已支付,需要退款
         if (orderMasterDTO.getPayStatus().equals(PayStatusEnums.FINISH.getCode())) {
-            //TODO
+            //调用退款
+            payService.refund(orderMasterDTO);
         }
         return orderMasterDTO;
     }

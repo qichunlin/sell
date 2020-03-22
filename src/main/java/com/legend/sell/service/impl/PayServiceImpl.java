@@ -10,12 +10,13 @@ import com.legend.sell.utils.MathUtils;
 import com.lly835.bestpay.enums.BestPayTypeEnum;
 import com.lly835.bestpay.model.PayRequest;
 import com.lly835.bestpay.model.PayResponse;
+import com.lly835.bestpay.model.RefundRequest;
+import com.lly835.bestpay.model.RefundResponse;
 import com.lly835.bestpay.service.impl.BestPayServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 
 /**
  * @author legend
@@ -82,5 +83,18 @@ public class PayServiceImpl implements IPayService {
         //修改订单的支付状态
         orderMasterService.pay(orderMasterDTO);
         return payResponse;
+    }
+
+    @Override
+    public RefundResponse refund(OrderMasterDTO orderMasterDTO) {
+        RefundRequest refundRequest = new RefundRequest();
+        refundRequest.setOrderId(orderMasterDTO.getOrderId());
+        refundRequest.setOrderAmount(orderMasterDTO.getOrderAmount().doubleValue());
+        //微信H5
+        refundRequest.setPayTypeEnum(BestPayTypeEnum.WXPAY_MWEB);
+        log.error("微信退款 refundRequest=...{}",JsonUtils.toJson(refundRequest));
+        RefundResponse refundResponse = bestPayService.refund(refundRequest);
+        log.error("微信退款 refundResponse=...{}",JsonUtils.toJson(refundResponse));
+        return  refundResponse;
     }
 }

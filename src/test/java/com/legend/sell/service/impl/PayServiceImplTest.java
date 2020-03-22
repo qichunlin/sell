@@ -28,4 +28,10 @@ public class PayServiceImplTest {
         OrderMasterDTO orderMasterDTO = orderMasterService.queryOne("1584453762143291533");
         payService.create(orderMasterDTO);
     }
+
+    @Test
+    public void refund() {
+        OrderMasterDTO orderMasterDTO = orderMasterService.queryOne("1584453762143291533");
+        payService.refund(orderMasterDTO);
+    }
 }
