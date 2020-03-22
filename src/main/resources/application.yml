@@ -1,25 +1,27 @@
 spring:
   profiles:
-    active: uat
+    active: dev
   #等效于这个注解@JsonInclude(JsonInclude.Include.NON_NULL)  使用配置文件的可以不用每一个DTO排除null属性的字段
   jackson:
     default-property-inclusion: non_null
   redis:
     host: 192.168.0.115
-#    host: 127.0.0.1
+    #    host: 127.0.0.1
     port: 6379
   #打印sql语句
   jpa:
     show-sql: true
 
+#从配置文件中获取微信的相关配置
 wechat:
   mpAppId: wxa6344813f106bc7a
   mpAppSecret: 0561d7c09b9cc71b0083e9133e9a903d
-  openAppId : wxaf53a107603fccae
-  openAppSecret : 4ca3a5a3fb96f41ff47ec0e65c88e4ce
+  openAppId: wxaf53a107603fccae
+  openAppSecret: 4ca3a5a3fb96f41ff47ec0e65c88e4ce
   mchId: 137945590x
   mchKey: 0561d7c09b9cc71b00xxxxxxxxxxxx
   keyPath: D:/weixin_cert/apiclient_cert.p12
+  #不设置的话都不能发起支付
   notify_url: http://gzcstec.com/sell/pay/notify
   templateIds:
     orderStatus: uyjvfWUNNxavK_hW_dfNM1noVp-jHXcjadjBcM8BVYY

@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 
 /**
- * 微信请求
+ * 微信请求(手动获取openid的方式)
  *
  * @author legend
  */
@@ -19,6 +19,11 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 @Slf4j
 public class WeixinController {
 
+    /**
+     * 获取回掉之后的code参数值
+     *
+     * @param code
+     */
     @GetMapping("/auth")
     public void auth(@RequestParam("code") String code) {
         log.info("进入回调函数");
