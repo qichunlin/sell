@@ -2,6 +2,7 @@ package com.legend.sell.service.impl;
 
 import com.legend.sell.dto.OrderMasterDTO;
 import com.legend.sell.service.IPayService;
+import com.legend.sell.utils.JsonUtils;
 import com.lly835.bestpay.enums.BestPayTypeEnum;
 import com.lly835.bestpay.model.PayRequest;
 import com.lly835.bestpay.model.PayResponse;
@@ -28,10 +29,10 @@ public class PayServiceImpl implements IPayService {
         payRequest.setOrderName(ORDER_NAME);
         //微信公众账号支付
         payRequest.setPayTypeEnum(BestPayTypeEnum.WXPAY_MP);
-        log.info("微信支付 payRequest={}", payRequest);
+        log.info("微信支付 payRequest={}", JsonUtils.toJson(payRequest));
 
         PayResponse payResponse = bestPayService.pay(payRequest);
-        log.info("微信支付 payResponse={}", payResponse);
+        log.info("微信支付 payResponse={}", JsonUtils.toJson(payResponse));
         return payResponse;
     }
 }
