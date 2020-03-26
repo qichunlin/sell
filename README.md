@@ -1,6 +1,18 @@
 # weixin_sell
 使用springboot+vue构建的微信点餐系统
 
+## 前端构建
+npm run build
+
+拷贝到具体的路径下面
+cp -r dist/* /opt/data/wwwroot/sell/
+
+
+
+## 微信授权
+### 流程url访问
+![](https://img2020.cnblogs.com/blog/1231979/202003/1231979-20200326194138941-1991255358.png)
+
 
 ## 微信支付模块
 

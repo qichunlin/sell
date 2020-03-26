@@ -18,7 +18,7 @@ target/
 *.iml
 *.ipr
 /node_modules/
-/log/
+/log/sell/*.log
 
 ### NetBeans ###
 /nbproject/private/

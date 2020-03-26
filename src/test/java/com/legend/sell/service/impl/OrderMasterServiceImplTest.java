@@ -30,7 +30,7 @@ public class OrderMasterServiceImplTest {
 
     private static final String BUYER_OPENID = "abc123";
 
-//    private static final String ORDER_ID = "1584266903383596286";
+    //    private static final String ORDER_ID = "1584266903383596286";
     private static final String ORDER_ID = "2";
 
     @Test
@@ -50,47 +50,53 @@ public class OrderMasterServiceImplTest {
 
         orderMasterDTO.setOrderDetailList(orderDetailList);
         OrderMasterDTO orderMasterDTOSave = orderMasterService.create(orderMasterDTO);
-        log.info("[创建订单]订单数据Result......{}",orderMasterDTOSave);
+        log.info("[创建订单]订单数据Result......{}", orderMasterDTOSave);
         Assert.assertNotNull(orderMasterDTOSave);
     }
 
     @Test
     public void queryOne() {
         OrderMasterDTO orderMasterDTO = orderMasterService.queryOne(ORDER_ID);
-        log.info("查询单个订单数据....{}",orderMasterDTO);
-        Assert.assertEquals(ORDER_ID,orderMasterDTO.getOrderId());
+        log.info("查询单个订单数据....{}", orderMasterDTO);
+        Assert.assertEquals(ORDER_ID, orderMasterDTO.getOrderId());
     }
 
     @Test
     public void queryListByBuyerOpenId() {
-        PageRequest pageRequest = new PageRequest(0,1);
+        PageRequest pageRequest = new PageRequest(0, 1);
         Page<OrderMasterDTO> orderMasterDTOPage = orderMasterService.queryListByBuyerOpenId(BUYER_OPENID, pageRequest);
         Assert.assertNotNull(orderMasterDTOPage);
-        Assert.assertEquals(0,orderMasterDTOPage.getTotalElements());
+        Assert.assertEquals(0, orderMasterDTOPage.getTotalElements());
     }
 
     @Test
     public void cancel() {
         OrderMasterDTO orderMasterDTO = orderMasterService.queryOne(ORDER_ID);
         OrderMasterDTO result = orderMasterService.cancel(orderMasterDTO);
-        Assert.assertEquals(OrderStatusEnums.CANCEL.getCode(),result.getOrderStatus());
+        Assert.assertEquals(OrderStatusEnums.CANCEL.getCode(), result.getOrderStatus());
     }
 
     @Test
     public void finish() {
         OrderMasterDTO orderMasterDTO = orderMasterService.queryOne(ORDER_ID);
         OrderMasterDTO result = orderMasterService.finish(orderMasterDTO);
-        Assert.assertEquals(OrderStatusEnums.FINISH.getCode(),result.getOrderStatus());
+        Assert.assertEquals(OrderStatusEnums.FINISH.getCode(), result.getOrderStatus());
     }
 
     @Test
     public void pay() {
         OrderMasterDTO orderMasterDTO = orderMasterService.queryOne(ORDER_ID);
         OrderMasterDTO result = orderMasterService.pay(orderMasterDTO);
-        Assert.assertEquals(PayStatusEnums.FINISH.getCode(),result.getPayStatus());
+        Assert.assertEquals(PayStatusEnums.FINISH.getCode(), result.getPayStatus());
     }
 
     @Test
-    public void queryList() {
+    public void queryAllList() {
+        PageRequest pageRequest = new PageRequest(0, 2);
+        Page<OrderMasterDTO> orderMasterDTOPage = orderMasterService.queryAllList(pageRequest);
+        //Assert.assertNotEquals(0, orderMasterDTOPage.getTotalElements());
+
+        //第二种测试方法
+        Assert.assertTrue("查询所有的订单列表", orderMasterDTOPage.getTotalElements() > 0);
     }
 }

@@ -245,9 +245,9 @@ public class OrderMasterServiceImpl implements IOrderMasterService {
     }
 
     @Override
-    public Page<OrderMasterDTO> queryList(String buyerOpenid, Pageable pageable) {
-        //1.查找用户订单
-        Page<OrderMaster> orderMasterList = orderMasterRepository.queryByBuyerOpenid(buyerOpenid, pageable);
+    public Page<OrderMasterDTO> queryAllList(Pageable pageable) {
+        //1.查找所有订单
+        Page<OrderMaster> orderMasterList = orderMasterRepository.findAll(pageable);
         //转化成DTO
         List<OrderMasterDTO> orderDtoList = ConvertOrderMaster2OrderMasterDTO.convert(orderMasterList.getContent());
         return new PageImpl<>(orderDtoList, pageable, orderMasterList.getTotalElements());

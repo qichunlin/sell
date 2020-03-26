@@ -59,11 +59,11 @@ public interface IOrderMasterService {
     OrderMasterDTO pay(OrderMasterDTO orderDTO);
 
     /**
-     * 查找订单.
+     * 查找所有订单.
      *
-     * @param buyerOpenid
+     * @param
      * @param pageable
      * @return
      */
-    Page<OrderMasterDTO> queryList(String buyerOpenid, Pageable pageable);
+    Page<OrderMasterDTO> queryAllList( Pageable pageable);
 }
