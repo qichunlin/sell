@@ -92,7 +92,7 @@ public class BuyerOrderController {
         }
         PageRequest pageRequest = new PageRequest(page, size);
         //查询订单
-        Page<OrderMasterDTO> orderMasterDTOList = orderMasterService.queryList(openid, pageRequest);
+        Page<OrderMasterDTO> orderMasterDTOList = orderMasterService.queryListByBuyerOpenId(openid, pageRequest);
         return ResultVOUtils.success(orderMasterDTOList.getContent());
     }
 
