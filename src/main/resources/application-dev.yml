@@ -3,7 +3,10 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
-    url: jdbc:mysql://192.168.0.115/weixin_sell?characterEncoding=utf-8&userSSL=false
+    # 使用虚拟机的数据库
+    #url: jdbc:mysql://192.168.0.115/weixin_sell?characterEncoding=utf-8&userSSL=false
+    # 使用本地的数据库
+    url: jdbc:mysql://localhost:3306/weixin_sell?characterEncoding=utf-8&userSSL=false&serverTimezone=UTC
   jpa:
     show-sql: true
     hibernate:

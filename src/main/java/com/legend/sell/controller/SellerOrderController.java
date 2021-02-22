@@ -1,8 +1,10 @@
 package com.legend.sell.controller;
 
 import com.legend.sell.dto.OrderMasterDTO;
+import com.legend.sell.entity.OrderDetail;
 import com.legend.sell.enums.ExceptionCodeEnums;
 import com.legend.sell.exception.SellException;
+import com.legend.sell.repository.OrderDetailRepository;
 import com.legend.sell.service.IOrderMasterService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,6 +34,25 @@ public class SellerOrderController {
 
     @Autowired
     private IOrderMasterService orderMasterService;
+    @Autowired
+    private OrderDetailRepository orderDetailRepository;
+
+    /**
+     * 订单详情
+     * http://localhost:8080/sell/seller/order/detail?orderId=2
+     *
+     * @param orderId
+     * @return
+     */
+    @GetMapping("/detail")
+    public ModelAndView detail(@RequestParam(value = "orderId", defaultValue = "1") String orderId,
+                               Map<String, Object> map) {
+
+        List<OrderDetail> orderDetailList = orderDetailRepository.queryByOrderId(orderId);
+        map.put("orderDetailList", orderDetailList);
+        map.put("orderId", orderId);
+        return new ModelAndView("order/detail", map);
+    }
 
     /**
      * 订单列表
