@@ -9,6 +9,8 @@ package com.legend.sell.enums;
 
 public enum ExceptionCodeEnums {
 
+    SUCCESS(0,"成功"),
+
     PARAM_ERROR(1 , "参数不正确"),
     PRODUCT_NOT_FOUND(10, "未找到商品"),
     PRODUCT_STOCK_ERROR(11 , "商品库存不足"),

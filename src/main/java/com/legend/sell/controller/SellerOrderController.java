@@ -1,7 +1,10 @@
 package com.legend.sell.controller;
 
 import com.legend.sell.dto.OrderMasterDTO;
+import com.legend.sell.enums.ExceptionCodeEnums;
+import com.legend.sell.exception.SellException;
 import com.legend.sell.service.IOrderMasterService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +24,7 @@ import java.util.Map;
  * @description
  * @date 2021/2/16
  */
+@Slf4j
 @Controller
 @RequestMapping("/seller/order")
 public class SellerOrderController {
@@ -47,5 +51,30 @@ public class SellerOrderController {
         map.put("currentPage", page);
         map.put("size", size);
         return new ModelAndView("order/list", map);
+    }
+
+    /**
+     * 取消订单
+     * http://localhost:8080/sell/seller/order/cancel?orderId=1
+     *
+     * @param orderId 订单id
+     * @return
+     */
+    @GetMapping("/cancel")
+    public ModelAndView cancel(@RequestParam(value = "orderId") String orderId,
+                               Map<String, Object> map) {
+
+        try {
+            OrderMasterDTO orderDTO = orderMasterService.queryOne(orderId);
+            orderMasterService.cancel(orderDTO);
+        } catch (SellException e) {
+            log.error("【卖家端订单】不存在！！！{}", e.getMessage());
+            map.put("msg", ExceptionCodeEnums.ORDER_NOT_FOUND.getMessage());
+            map.put("url", "/sell/seller/order/list");
+            return new ModelAndView("/common/error", map);
+        }
+        map.put("msg", ExceptionCodeEnums.SUCCESS.getMessage());
+        map.put("url", "/sell/seller/order/list");
+        return new ModelAndView("common/success");
     }
 }

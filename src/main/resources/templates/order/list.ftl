@@ -88,10 +88,12 @@
                             ${orderDTO.createTime}
                         </td>
                         <td>
-                            详情
+                            <a href="/sell/seller/order/detail?orderId=${orderDTO.orderId}">详情</a>
                         </td>
                         <td>
-                            取消
+                            <#if orderDTO.getOrderStatus() == 0>
+                                <a href="/sell/seller/order/cancel?orderId=${orderDTO.orderId}">取消</a>
+                            </#if>
                         </td>
 
                     </tr>
