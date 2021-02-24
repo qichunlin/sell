@@ -34,8 +34,31 @@ public class SellerOrderController {
 
     @Autowired
     private IOrderMasterService orderMasterService;
-    @Autowired
-    private OrderDetailRepository orderDetailRepository;
+
+    /**
+     * 订单完结
+     * http://localhost:8080/sell/seller/order/finish?orderId=2
+     *
+     * @param orderId
+     * @return
+     */
+    @GetMapping("/finish")
+    public ModelAndView finished(@RequestParam(value = "orderId", defaultValue = "1") String orderId,
+                               Map<String, Object> map) {
+
+        try {
+            OrderMasterDTO orderDto = orderMasterService.queryOne(orderId);
+            orderMasterService.finish(orderDto);
+        } catch (Exception e) {
+            log.error("【卖家端完成订单】发生异常！！！{}", e.getMessage());
+            map.put("msg", ExceptionCodeEnums.ORDER_NOT_FOUND.getMessage());
+            map.put("url", "/sell/seller/order/list");
+            return new ModelAndView("/common/error", map);
+        }
+        map.put("msg", ExceptionCodeEnums.SUCCESS.getMessage());
+        map.put("url", "/sell/seller/order/list");
+        return new ModelAndView("common/success");
+    }
 
     /**
      * 订单详情
@@ -48,8 +71,8 @@ public class SellerOrderController {
     public ModelAndView detail(@RequestParam(value = "orderId", defaultValue = "1") String orderId,
                                Map<String, Object> map) {
 
-        List<OrderDetail> orderDetailList = orderDetailRepository.queryByOrderId(orderId);
-        map.put("orderDetailList", orderDetailList);
+        OrderMasterDTO orderDto = orderMasterService.queryOne(orderId);
+        map.put("orderDto", orderDto);
         map.put("orderId", orderId);
         return new ModelAndView("order/detail", map);
     }

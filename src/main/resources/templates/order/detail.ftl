@@ -29,7 +29,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <#list orderDetailList as orderDetail>
+                <#list orderDto.orderDetailList as orderDetail>
                     <tr>
                         <td>
                             ${orderDetail.orderId}
@@ -48,6 +48,13 @@
 
                 </tbody>
             </table>
+        </div>
+
+        <div class="span12">
+            <#if orderDto.getOrderStatusEnum().code == 0>
+                <a href="/sell/seller/order/finish?orderId=${orderId}" class="btn btn-info" type="button">完结订单</a>
+                <a href="/sell/seller/order/cancel?orderId=${orderId}" class="btn btn-danger" type="button">取消订单</a>
+            </#if>
         </div>
     </div>
 </div>
