@@ -119,22 +119,34 @@ public class ProductInfoServiceImpl implements IProductInfoService {
     }
 
     @Override
-    public ProductInfo offSafe(ProductInfo productInfo) {
+    public ProductInfo offSale(Integer productId) {
+        ProductInfo productInfo = productInfoRepository.findById(productId).get();
+        if (productInfo == null) {
+            throw new SellException(ExceptionCodeEnums.PRODUCT_NOT_EXIST);
+        }
         //1.判断商品状态
-        /*if(ProductStatusEnums.DOWN.getCode()==productInfo.getProductStatus()) {
-            throw new SellException(ExceptionCodeEnums.PRODUCT_OFF_SALE_FAIL);
-        }*/
+        if (ProductStatusEnums.DOWN == productInfo.getProductStatusEnums()) {
+            throw new SellException(ExceptionCodeEnums.PRODUCT_STATUS_ERROR);
+        }
+
+        //更新
         productInfo.setProductStatus(ProductStatusEnums.DOWN.getCode());
         return productInfoRepository.save(productInfo);
     }
 
     @Override
-    public ProductInfo onSafe(ProductInfo productInfo) {
-        /*//1.判断商品状态
-        if(ProductStatusEnums.UP.getCode()==productInfo.getProductStatus()) {
-            throw new SellException(ExceptionCodeEnums.PRODUCT_ON_SALE_FAIL);
+    public ProductInfo onSale(Integer productId) {
+        ProductInfo productInfo = productInfoRepository.findById(productId).get();
+        if (productInfo == null) {
+            throw new SellException(ExceptionCodeEnums.PRODUCT_NOT_EXIST);
         }
-        productInfo.setProductStatus(ProductStatusEnums.UP.getCode());*/
+        //1.判断商品状态
+        if (ProductStatusEnums.UP == productInfo.getProductStatusEnums()) {
+            throw new SellException(ExceptionCodeEnums.PRODUCT_STATUS_ERROR);
+        }
+
+        //更新
+        productInfo.setProductStatus(ProductStatusEnums.UP.getCode());
         return productInfoRepository.save(productInfo);
     }
 }

@@ -5,7 +5,7 @@ package com.legend.sell.enums;
  *
  * @author legend
  */
-public enum ProductStatusEnums {
+public enum ProductStatusEnums implements CodeEnums{
 
     UP(1, "在架"),
 
@@ -15,20 +15,13 @@ public enum ProductStatusEnums {
     private Integer code;
     private String message;
 
+    @Override
     public Integer getCode() {
         return code;
     }
 
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
     public String getMessage() {
         return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     ProductStatusEnums(Integer code, String message) {

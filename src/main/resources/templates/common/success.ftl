@@ -14,7 +14,8 @@
                 <button type="button" class="close" data-dismiss="alert">×</button>
                 <h4>
                     提示!
-                </h4> <strong>${msg}</strong> <a href="${url}" class="alert-link">alert-link</a>
+                    <#--字段默认值 ${msg!""-->
+                </h4> <strong>${msg!""}</strong> <a href="${url}" class="alert-link">alert-link</a>
             </div>
         </div>
     </div>

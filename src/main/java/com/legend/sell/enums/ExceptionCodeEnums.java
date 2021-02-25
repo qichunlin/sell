@@ -30,6 +30,8 @@ public enum ExceptionCodeEnums {
 
     WECHAT_MP_ERROR(21 , "微信网页授权失败"),
     WXPAY_NOTIFY_MONEY_VERIFY_ERROR(22 , "微信支付异步通知金额校验不通过"),
+    PRODUCT_STATUS_ERROR(23 , "商品状态不正确"),
+    PRODUCT_NOT_EXIST(24 , "商品不存在"),
 
     ;
 

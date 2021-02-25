@@ -62,16 +62,16 @@ public interface IProductInfoService {
     /**
      * 商品下架
      *
-     * @param productInfo
+     * @param productId
      * @return ProductInfo
      */
-    ProductInfo offSafe(ProductInfo productInfo);
+    ProductInfo offSale(Integer productId);
 
     /**
      * 商品上架
      *
-     * @param productInfo
+     * @param productId
      * @return ProductInfo
      */
-    ProductInfo onSafe(ProductInfo productInfo);
+    ProductInfo onSale(Integer productId);
 }

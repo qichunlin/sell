@@ -1,7 +1,9 @@
 package com.legend.sell.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.legend.sell.enums.ProductStatusEnums;
+import com.legend.sell.utils.EnumsUtils;
 import com.legend.sell.utils.serializer.Date2LongSerializer;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
@@ -77,4 +79,14 @@ public class ProductInfo implements Serializable {
      */
     @JsonSerialize(using = Date2LongSerializer.class)
     private Date updateTime;
+
+    /**
+     * 获取状态转化
+     *
+     * @return
+     */
+    @JsonIgnore
+    public ProductStatusEnums getProductStatusEnums() {
+        return EnumsUtils.getEnumsByCode(productStatus, ProductStatusEnums.class);
+    }
 }
