@@ -78,7 +78,7 @@
                                 ${productInfo.categoryType}
                             </td>
                             <td>
-                                ${productInfo.getProductStatusEnums().message}
+                                ${productInfo.getProductStatusEnums().message!""}
                             </td>
                             <td>
                                 ${productInfo.createTime}
@@ -87,7 +87,7 @@
                                 ${productInfo.updateTime}
                             </td>
                             <td>
-                                <a href="/sell/seller/product/update/${productInfo.productId}">修改</a>
+                                <a href="/sell/seller/product/index?productId=${productInfo.productId}">修改</a>
                             </td>
                             <td>
                                 <#if productInfo.getProductStatus() == 0>

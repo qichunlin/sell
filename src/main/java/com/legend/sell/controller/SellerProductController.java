@@ -5,20 +5,21 @@ import com.legend.sell.entity.ProductCategory;
 import com.legend.sell.entity.ProductInfo;
 import com.legend.sell.enums.ExceptionCodeEnums;
 import com.legend.sell.exception.SellException;
+import com.legend.sell.form.ProductForm;
 import com.legend.sell.service.IProductCategoryService;
 import com.legend.sell.service.IProductInfoService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +38,41 @@ public class SellerProductController {
     private IProductInfoService productInfoService;
     @Autowired
     private IProductCategoryService productCategoryService;
+
+    /**
+     * 商品保存/更新
+     *
+     * @param productForm
+     * @param map
+     * @return
+     */
+    @PostMapping("/save")
+    public ModelAndView save(@Valid ProductForm productForm,
+                             BindingResult bindingResult,
+                             Map<String, Object> map) {
+
+        if (bindingResult.hasErrors()) {
+            map.put("msg", ExceptionCodeEnums.PRODUCT_NOT_FOUND.getMessage());
+            map.put("url", "/sell/seller/product/index");
+            return new ModelAndView("/common/error", map);
+        }
+
+        try {
+            ProductInfo productInfo = new ProductInfo();
+            if (!StringUtils.isEmpty(productForm.getProductId())) {
+                //数据拷贝
+                productInfo = productInfoService.queryOne(productForm.getProductId());
+            }
+            BeanUtils.copyProperties(productForm, productInfo);
+            productInfoService.save(productInfo);
+        } catch (SellException e) {
+            map.put("msg", e.getMessage());
+            map.put("url", "/sell/seller/product/index");
+            return new ModelAndView("/common/error", map);
+        }
+        map.put("url", "/sell/seller/product/list");
+        return new ModelAndView("/common/success", map);
+    }
 
     /**
      * 商品展示和新增
