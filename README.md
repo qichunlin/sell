@@ -14,12 +14,16 @@ cp -r dist/* /opt/data/wwwroot/sell/
 ![](https://img2020.cnblogs.com/blog/1231979/202003/1231979-20200326194138941-1991255358.png)
 
 
+本次注册的openId：o4jhO6f9xKQZDmSy0FtzOWSMeMlA
+
+
 ## 微信支付模块
 
 ### 微信网页授权
 
 #### 官方文档
 - https://mp.weixin.qq.com/wiki
+- https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html
 
 - 新版的
 https://pay.weixin.qq.com/wiki/doc/api/index.html
@@ -28,6 +32,10 @@ https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_1
 
 #### 调试
 - https://natapp.cn
+
+
+#### 获取access_token官方调试
+https://mp.weixin.qq.com/debug/cgi-bin/apiinfo?t=index&type=%E5%9F%BA%E7%A1%80%E6%94%AF%E6%8C%81&form=%E8%8E%B7%E5%8F%96access_token%E6%8E%A5%E5%8F%A3%20/token
 
 
 #### 第三方SDK
@@ -208,3 +216,19 @@ http://127.0.0.1:8080/sell/swagger-ui.html
 
 
 ## 微信模板消息推送
+
+微信公众号平台
+https://mp.weixin.qq.com/advanced/advanced?action=dev&t=advanced/dev&token=156218371&lang=zh_CN
+
+
+测试账号
+https://mp.weixin.qq.com/debug/cgi-bin/sandboxinfo?action=showinfo&t=sandbox/index
+
+
+发送模板消息文档
+https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Template_Message_Interface.html#5
+
+模板消息使用
+https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/template-message.html
+
+

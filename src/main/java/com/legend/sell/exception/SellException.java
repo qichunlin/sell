@@ -27,5 +27,7 @@ public class SellException extends RuntimeException {
         this.code = exceptionCodeEnums.getCode();
     }
 
-
+    public Integer getCode() {
+        return code;
+    }
 }

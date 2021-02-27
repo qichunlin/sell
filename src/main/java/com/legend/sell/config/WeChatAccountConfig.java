@@ -5,6 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import javax.net.ssl.SSLContext;
+import java.util.Map;
 
 /**
  * 微信账号配置(为了读取application.yml配置文件中的属性参数)
@@ -15,6 +16,12 @@ import javax.net.ssl.SSLContext;
 @Component
 @ConfigurationProperties(prefix = "wechat")
 public class WeChatAccountConfig {
+
+    /**
+     * 微信消息模板id
+     */
+    private Map<String,String> templateId;
+
     /**
      * 公众平台appid
      */

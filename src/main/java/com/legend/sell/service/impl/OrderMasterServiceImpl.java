@@ -15,6 +15,7 @@ import com.legend.sell.repository.OrderMasterRepository;
 import com.legend.sell.service.IOrderMasterService;
 import com.legend.sell.service.IPayService;
 import com.legend.sell.service.IProductInfoService;
+import com.legend.sell.service.IPushMessageService;
 import com.legend.sell.utils.KeyUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -47,7 +48,8 @@ public class OrderMasterServiceImpl implements IOrderMasterService {
     private OrderDetailRepository orderDetailRepository;
     @Autowired
     private OrderMasterRepository orderMasterRepository;
-
+    @Autowired
+    private IPushMessageService pushMessageService;
     @Autowired
     private IPayService payService;
 
@@ -163,7 +165,6 @@ public class OrderMasterServiceImpl implements IOrderMasterService {
         BeanUtils.copyProperties(orderMasterDTO, orderMaster);
 
         //判断订单状态
-        System.out.println("///////////" + orderMasterDTO.getOrderStatus());
         if (!orderMasterDTO.getOrderStatus().equals(OrderStatusEnums.NEW.getCode())) {
             log.error("[取消订单]订单状态不正确,orderId={},orderStatus={}", orderMasterDTO.getOrderId(), orderMasterDTO.getOrderStatus());
             throw new SellException(ExceptionCodeEnums.ORDER_STATUS_ERROR);
@@ -215,6 +216,10 @@ public class OrderMasterServiceImpl implements IOrderMasterService {
             log.error("[完结订单]更新失败,orderMaster={}", updateResult);
             throw new SellException(ExceptionCodeEnums.ORDER_STATUS_UPDATE_FAIL);
         }
+
+        //推送微信模板信息
+        pushMessageService.pushOrderStatusNotice(orderMasterDTO);
+
         return orderMasterDTO;
     }
 

@@ -28,14 +28,15 @@ wechat:
   #不设置的话都不能发起支付
   notify_url: http://gzcstec.com/sell/pay/notify
   templateIds:
-    orderStatus: uyjvfWUNNxavK_hW_dfNM1noVp-jHXcjadjBcM8BVYY
+    #订单状态模板id (获取方式：http://mp.weixin.qq.com/debug/cgi-bin/sandboxinfo?action=showinfo&t=sandbox/index)
+    orderStatus: g_01uPNUjtCEMW-ouzIv06ZZuAQmn3u2u9_3liz7WNg
 
 
 #项目配置的url管理
 project-url:
-  mpAuthorizeUrl: http://u9qmdb.natappfree.cc
-  openAuthorizeUrl: http://u9qmdb.natappfree.cc
-  sell: http://u9qmdb.natappfree.cc
+  mpAuthorizeUrl: http://kwr69m.natappfree.cc
+  openAuthorizeUrl: http://kwr69m.natappfree.cc
+  sell: http://kwr69m.natappfree.cc
 mybatis:
   mapper-locations: classpath:mapper/*.xml
 

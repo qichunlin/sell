@@ -47,7 +47,7 @@ public class WeChatController {
         //1.配置
         //2.调用方法
         //https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx08bfea2b24f6da8f&redirect_uri=http%3A%2F%2Fu9qmdb.natappfree.cc%2Fsell%2Fwechat%2FuserInfo&response_type=code&scope=snsapi_userinfo&state=https%3A%2F%2Fwww.imooc.com%2F#wechat_redirect
-        String url = "http://u9qmdb.natappfree.cc/sell/wechat/userInfo";
+        String url = "http://kwr69m.natappfree.cc/sell/wechat/userInfo";
         //String url = projectUrlConfig.getWechatMpAuthorize() + "/sell/wechat/userInfo";
         //OAUTH2_SCOPE_USER_INFO 会弹出框    OAUTH2_SCOPE_BASE 不会
         String redirectUrl = wxMpService.oauth2buildAuthorizationUrl(url, WxConsts.OAUTH2_SCOPE_USER_INFO, URLEncoder.encode(returnUrl));
@@ -68,7 +68,7 @@ public class WeChatController {
 
         WxMpOAuth2AccessToken wxMpOAuth2AccessToken = new WxMpOAuth2AccessToken();
         try {
-            wxMpService.oauth2getAccessToken(code);
+            wxMpOAuth2AccessToken = wxMpService.oauth2getAccessToken(code);
         } catch (WxErrorException e) {
             log.error("[微信网页授权] {}", e);
             throw new SellException(ExceptionCodeEnums.WECHAT_MP_ERROR.getCode(), e.getError().getErrorMsg());
