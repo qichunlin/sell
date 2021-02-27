@@ -5,8 +5,8 @@ spring:
   jackson:
     default-property-inclusion: non_null
   redis:
-    host: 192.168.0.115
-    #    host: 127.0.0.1
+    #host: 192.168.0.115
+    host: 127.0.0.1
     port: 6379
   #打印sql语句
   jpa:
@@ -26,6 +26,8 @@ wechat:
   templateIds:
     orderStatus: uyjvfWUNNxavK_hW_dfNM1noVp-jHXcjadjBcM8BVYY
 
+
+#项目配置的url管理
 projectUrlConfig:
   mpAuthorizeUrl: http://fmx.weixin.gzcstec.com
   openAuthorizeUrl: http://fmx.weixin.gzcstec.com

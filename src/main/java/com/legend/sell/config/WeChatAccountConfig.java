@@ -16,14 +16,24 @@ import javax.net.ssl.SSLContext;
 @ConfigurationProperties(prefix = "wechat")
 public class WeChatAccountConfig {
     /**
-     * appid
+     * 公众平台appid
      */
     private String mpAppId;
 
     /**
-     * secret
+     * 公众平台secret
      */
     private String mpAppSecret;
+
+    /**
+     * 开放平台appid
+     */
+    private String openAppId;
+
+    /**
+     * 开放平台secret
+     */
+    private String openAppSecret;
 
     /**
      * 商户号
