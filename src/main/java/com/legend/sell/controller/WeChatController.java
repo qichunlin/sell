@@ -38,6 +38,7 @@ public class WeChatController {
 
     /**
      * 获取回掉之后的code参数值
+     * http://u9qmdb.natappfree.cc/sell/wechat/authorize?returnUrl=http://u9qmdb.natappfree.cc/sell/seller/order/list
      *
      * @param returnUrl
      */
@@ -45,13 +46,22 @@ public class WeChatController {
     public String authorize(@RequestParam("returnUrl") String returnUrl) {
         //1.配置
         //2.调用方法
-        //String url = "http://9biu9y.natappfree.cc/sell/wechat/userInfo";
-        String url = projectUrlConfig.getWechatMpAuthorize() + "/sell/wechat/userInfo";
-        String redirectUrl = wxMpService.oauth2buildAuthorizationUrl(url, WxConsts.OAUTH2_SCOPE_BASE, URLEncoder.encode(returnUrl));
-        return "redirectUrl:" + redirectUrl;
+        //https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx08bfea2b24f6da8f&redirect_uri=http%3A%2F%2Fu9qmdb.natappfree.cc%2Fsell%2Fwechat%2FuserInfo&response_type=code&scope=snsapi_userinfo&state=https%3A%2F%2Fwww.imooc.com%2F#wechat_redirect
+        String url = "http://u9qmdb.natappfree.cc/sell/wechat/userInfo";
+        //String url = projectUrlConfig.getWechatMpAuthorize() + "/sell/wechat/userInfo";
+        //OAUTH2_SCOPE_USER_INFO 会弹出框    OAUTH2_SCOPE_BASE 不会
+        String redirectUrl = wxMpService.oauth2buildAuthorizationUrl(url, WxConsts.OAUTH2_SCOPE_USER_INFO, URLEncoder.encode(returnUrl));
+        log.info("redirectUrl:{}", redirectUrl);
+        return "redirect:" + redirectUrl;
     }
 
 
+    /**
+     * 上面的参数中 state 因为给了returnUrl
+     * @param code
+     * @param returnUrl
+     * @return
+     */
     @GetMapping("/userInfo")
     public String userInfo(@RequestParam("code") String code,
                            @RequestParam("state") String returnUrl) {

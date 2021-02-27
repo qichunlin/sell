@@ -46,6 +46,7 @@ public class SellerUserController {
 
     /**
      * 登录
+     * http://u9qmdb.natappfree.cc/sell/seller/login?openid=abc
      *
      * @param openid
      * @param response

@@ -14,10 +14,14 @@ spring:
 
 #从配置文件中获取微信的相关配置
 wechat:
-  mpAppId: wxa6344813f106bc7a
-  mpAppSecret: 0561d7c09b9cc71b0083e9133e9a903d
-  openAppId: wxaf53a107603fccae
-  openAppSecret: 4ca3a5a3fb96f41ff47ec0e65c88e4ce
+  #测试账号
+  mpAppId: wx08bfea2b24f6da8f
+  mpAppSecret: 89f62bbe1267f51ea75f29ca01a63f21
+  #需要微信验证 才能获取网页授权
+  #mpAppId: wx5110b1da69d8d8da
+  #mpAppSecret: 4f42a7c4e9afab79a36102c5f1e6e274
+  openAppId: wx08bfea2b24f6da8f
+  openAppSecret: 89f62bbe1267f51ea75f29ca01a63f21
   mchId: 137945590x
   mchKey: 0561d7c09b9cc71b00xxxxxxxxxxxx
   keyPath: D:/weixin_cert/apiclient_cert.p12
@@ -28,10 +32,10 @@ wechat:
 
 
 #项目配置的url管理
-projectUrlConfig:
-  mpAuthorizeUrl: http://fmx.weixin.gzcstec.com
-  openAuthorizeUrl: http://fmx.weixin.gzcstec.com
-  sell: http://fmx.weixin.gzcstec.com
+project-url:
+  mpAuthorizeUrl: http://u9qmdb.natappfree.cc
+  openAuthorizeUrl: http://u9qmdb.natappfree.cc
+  sell: http://u9qmdb.natappfree.cc
 mybatis:
   mapper-locations: classpath:mapper/*.xml
 
