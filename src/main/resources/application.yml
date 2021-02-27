@@ -37,7 +37,16 @@ project-url:
   mpAuthorizeUrl: http://kwr69m.natappfree.cc
   openAuthorizeUrl: http://kwr69m.natappfree.cc
   sell: http://kwr69m.natappfree.cc
+
+#mybatis通过xml的方式配置
 mybatis:
   mapper-locations: classpath:mapper/*.xml
+  # 开启mybatis的驼峰映射支持(第一种方式)
+  configuration:
+    map-underscore-to-camel-case: true
 
 
+# 能看到mybatis的sql语句
+logging:
+  level:
+    com.legend.sell.mapper.ProductCategoryMapper: trace
