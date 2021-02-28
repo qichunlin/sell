@@ -17,6 +17,7 @@ import com.legend.sell.service.IPayService;
 import com.legend.sell.service.IProductInfoService;
 import com.legend.sell.service.IPushMessageService;
 import com.legend.sell.utils.KeyUtils;
+import com.legend.sell.ws.WebSocketServer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,8 @@ public class OrderMasterServiceImpl implements IOrderMasterService {
     private IPushMessageService pushMessageService;
     @Autowired
     private IPayService payService;
+    @Autowired
+    private WebSocketServer webSocketServer;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -114,6 +117,8 @@ public class OrderMasterServiceImpl implements IOrderMasterService {
         //执行减少操作
         productInfoService.decreaseStock(cartDTOList2);
 
+        //发送websocket消息
+        webSocketServer.sendMessage("有新的订单");
         return orderMasterDTO;
     }
 
