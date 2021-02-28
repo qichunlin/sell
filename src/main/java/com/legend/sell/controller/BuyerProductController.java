@@ -10,12 +10,12 @@ import com.legend.sell.vo.ProductVO;
 import com.legend.sell.vo.ResultVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,7 +34,18 @@ public class BuyerProductController {
     @Autowired
     private IProductCategoryService productCategoryService;
 
+    /**
+     * 获取商品列表数据
+     * Cacheable注解是将返回的数据放进去redis 第二次的时候直接从缓存里面读取,但是需要注意 数据更新的时候也需要更新缓存的数据
+     * 在save接口啥关添加注解CachePut即可
+     *
+     * Cacheable注解第一次回访问到方法里面的内容将返回的数据设置到redis,第二次不会访问方法内的内容
+     * 如果key没有值则 key会取方法的参数作为值
+     *
+     * @return
+     */
     @GetMapping("/list")
+    @Cacheable(cacheNames = "product", key = "123")
     public ResultVO list() {
         //1.查询所有的上架商品
         List<ProductInfo> productInfoList = productInfoService.queryUpAll();

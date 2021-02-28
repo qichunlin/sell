@@ -3,13 +3,15 @@ package com.legend.sell.vo;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * http请求返回给前端最外层对象
  *
  * @author legend
  */
 @Data
-public class ResultVO<T> {
+public class ResultVO<T> implements Serializable {
 
     /**
      * 错误码

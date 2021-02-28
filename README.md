@@ -1,6 +1,25 @@
 # weixin_sell
 使用springboot+vue构建的微信点餐系统
 
+
+## 问题
+### fatal: unable to access 'https://github.com/qichunlin/sell.git/': OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443
+
+方案一
+取消http代理：
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+
+
+-- 执行
+git config --global http.sslVerify "false" //这是因为开了代理的原因
+
+
+方案二
+把仓库链接地址由https修改为ssh的地址。
+
+
+
 ## 前端构建
 npm run build
 
@@ -252,3 +271,26 @@ ab -t 60 -c http://www.baidu.com/
 可以更细粒度的控制
 
 多台机器上多个进程对一个数据进行操作的互斥
+
+
+
+## idea对象序列化插件
+搜索Serializable 序列化
+
+
+## redis实现缓存
+@Cacheable 查询缓存
+
+@CachePut  更新缓存
+
+@CacheEvict 删除缓存
+
+>注意：存储的对象需要实现序列化,可以使用上面推荐的插件快速生成
+
+
+
+## 部署
+
+tomcat
+
+java -jar 

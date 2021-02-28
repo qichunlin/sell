@@ -34,6 +34,7 @@ public class ProductInfoServiceImpl implements IProductInfoService {
 //    private SellerProductMapper sellerProductMapper;
 
     @Override
+    //@Cacheable(cacheNames = "productInfo", key = "123")
     @Cacheable(key = "123")
     public ProductInfo queryOne(Integer id) {
         return productInfoRepository.findById(id).get();
@@ -50,6 +51,7 @@ public class ProductInfoServiceImpl implements IProductInfoService {
     }
 
     @Override
+    //@CachePut(cacheNames = "productInfo",key = "123")
     @CachePut(key = "123")
     public ProductInfo save(ProductInfo productInfo) {
         //使用mybatis
