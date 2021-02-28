@@ -232,3 +232,23 @@ https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Template_Mes
 https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/template-message.html
 
 
+
+## 压测模拟并发
+
+适用简易工具 Apache ab
+ab -n 100 -c http://www.baidu.com/
+ab -t 60 -c http://www.baidu.com/
+
+
+### 使用synchronized控制下单减库存
+总结：是一种解决办法,无法做到细粒度控制,只适合单点的情况
+
+
+### Redis分布式锁控制下单减库存
+单线程操作
+
+支持分布式
+
+可以更细粒度的控制
+
+多台机器上多个进程对一个数据进行操作的互斥
