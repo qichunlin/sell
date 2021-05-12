@@ -294,3 +294,41 @@ ab -t 60 -c http://www.baidu.com/
 tomcat
 
 java -jar 
+
+
+jar包传输
+scp target/sell.jar root@192.168.0.114:/root/test
+
+java -jar -Dserver.port=8090 -Dspring.profiles.active=prod sell.jar
+
+后台运行
+nohup java -jar sell.jar > /root/null 2>&1 &
+
+ps -ef | grep sell.jar
+
+
+
+## 总结
+项目分析设计
+
+微信特性
+
+微信支付与退款
+
+Token验证
+
+Websocket消息
+
+Redis缓存+ 分布式锁
+
+![](https://img2020.cnblogs.com/blog/1231979/202102/1231979-20210228202013080-1897716696.png)
+
+
+![](https://img2020.cnblogs.com/blog/1231979/202102/1231979-20210228202045490-175160968.png)
+
+
+
+#WeMini
+weMini.appid=wx904f31e4501b9cf4
+weMini.appsecret=c6882a3b4a25b9965e902aad6447ddbb
+weMini.redirect_URI=https://guodadrugstores.cn/ucenter/oauth/callback?flag=WeMini

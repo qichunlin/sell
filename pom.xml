@@ -113,6 +113,8 @@
     </dependencies>
 
     <build>
+        <!--打包工程部署的名字-->
+        <finalName>sell</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
