@@ -331,4 +331,4 @@ Redis缓存+ 分布式锁
 #WeMini
 weMini.appid=wx904f31e4501b9cf4
 weMini.appsecret=c6882a3b4a25b9965e902aad6447ddbb
-weMini.redirect_URI=https://guodadrugstores.cn/ucenter/oauth/callback?flag=WeMini
+weMini.redirect_URI=
